@@ -116,7 +116,7 @@ class _loginScreenState extends State<LoginScreen> {
                                 minimumSize: Size(166, 52),
                                 shape: const RoundedRectangleBorder(
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(30)),
+                                      BorderRadius.all(Radius.circular(15)),
                                 )),
                             child: const Text(
                               'Đăng nhập',

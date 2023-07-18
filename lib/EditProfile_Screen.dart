@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:project1/Login_Screen.dart';
+import 'package:project1/Profile_Screen.dart';
 
-class RegisterScreen extends StatefulWidget {
-  RegisterScreen({super.key});
+class EditProfileScreen extends StatefulWidget {
+  EditProfileScreen({super.key});
 
   @override
   State<StatefulWidget> createState() {
-    return _registerScreenState();
+    return _editProfileScreenState();
   }
 }
 
-class _registerScreenState extends State<RegisterScreen> {
+class _editProfileScreenState extends State<EditProfileScreen> {
   ///Global key
   final _formkey = GlobalKey<FormState>();
 
@@ -52,32 +53,41 @@ class _registerScreenState extends State<RegisterScreen> {
                               Navigator.pop(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => LoginScreen()));
+                                      builder: (context) => ProfileScreen()));
                             },
                             child: const Image(
                                 image: AssetImage('assets/icons/arrow.png'))),
                         const SizedBox(width: 36),
-                        const Text('Đăng kí tài khoản',
+                        const Text('Thông tin cá nhân',
                             style: TextStyle(color: Colors.white, fontSize: 21))
                       ],
                     ),
                   ),
 
-                  ///form đăng kí
+                  ///form để chỉnh sửa thông tin xem SQLite SCRUD để sửa
+
+
                   Container(
                     height: heightScreen - 118.182,
                     width: widthScreen,
                     padding: const EdgeInsets.fromLTRB(15, 17, 15, 0),
                     child: Column(
                       children: [
+                        const SizedBox(height: 38),
                         Container(
-                          height: 24,
-                          width: widthScreen,
-                          child: const Text(
-                              'Vui lòng sử dụng với thông tin thật để đăng ký',
-                              style: TextStyle(
-                                  color: Colors.orange, fontSize: 17)),
-                        ),
+                            height: 90,
+                            width: 90,
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(100)),
+                                border: Border.all(
+                                    color: Colors.blueAccent, width: 5)),
+                            child: const Image(
+                                image: AssetImage('assets/icons/user.png'),
+                                height: 117,
+                                width: 117)),
+
+                        const SizedBox(height: 38),
 
                         const SizedBox(height: 10),
 
@@ -91,33 +101,6 @@ class _registerScreenState extends State<RegisterScreen> {
                             decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
                                 hintText: 'Họ và tên',
-                                hintStyle: TextStyle(
-                                    color: Colors.black, fontSize: 18),
-                                enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1, color: Colors.grey),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8))),
-                                focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1, color: Colors.blue),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)))),
-                          ),
-                        ),
-
-                        SizedBox(height: 10),
-
-                        ///So CMND/CCCD
-                        SizedBox(
-                          height: 52,
-                          width: widthScreen,
-                          child: TextFormField(
-                            style: const TextStyle(fontSize: 18),
-                            keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
-                                hintText: 'Số CMND/CCCD',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 18),
                                 enabledBorder: OutlineInputBorder(
@@ -162,16 +145,16 @@ class _registerScreenState extends State<RegisterScreen> {
 
                         SizedBox(height: 10),
 
-                        ///mật khẩu
+                        ///So CMND/CCCD
                         SizedBox(
                           height: 52,
                           width: widthScreen,
                           child: TextFormField(
                             style: const TextStyle(fontSize: 18),
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
-                                hintText: 'mật khẩu',
+                                hintText: 'Số CMND/CCCD',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 18),
                                 enabledBorder: OutlineInputBorder(
@@ -187,7 +170,9 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 20),
+                        SizedBox(height: 10),
+
+                        SizedBox(height: 35),
 
                         TextButton(
                             onPressed: () {},
@@ -200,7 +185,7 @@ class _registerScreenState extends State<RegisterScreen> {
                                       BorderRadius.all(Radius.circular(15)),
                                 )),
                             child: const Text(
-                              'Đăng kí tài khoản',
+                              'Cập nhật',
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 18),
                             )),

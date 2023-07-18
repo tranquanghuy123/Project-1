@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project1/Home_Screen.dart';
+import 'package:project1/Home_Screen.dart';
 import 'package:project1/Login_Screen.dart';
+import 'package:project1/Profile_Screen.dart';
 import 'package:project1/Register_Screen.dart';
 
 void main() {
@@ -14,6 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
