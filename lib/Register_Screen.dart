@@ -14,6 +14,28 @@ class _registerScreenState extends State<RegisterScreen> {
   ///Global key
   final _formkey = GlobalKey<FormState>();
 
+  ///Controller
+  final _usernameController = TextEditingController();
+  final _identitynumberController = TextEditingController();
+  final _phonenumberController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  /// show the password or not
+  bool _isObscure = true;
+
+  @override
+  void dispose(){
+    _usernameController.dispose();
+    _identitynumberController.dispose();
+    _phonenumberController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
@@ -86,6 +108,20 @@ class _registerScreenState extends State<RegisterScreen> {
                           height: 52,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _usernameController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng nhập Họ và tên';
+                              } else if (value.length < 4) {
+                                return 'Họ và tên phải có ít nhất 4 kí tự';}
+                                else if (!value.contains(' ') || value.contains(RegExp(r'[0-9]')))
+                                  {
+                                    return 'Họ tên không hợp lệ. Xin vui lòng nhập lại';
+                                  }
+                               else {
+                                return null;
+                              }
+                            },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.text,
                             decoration: const InputDecoration(
@@ -113,6 +149,17 @@ class _registerScreenState extends State<RegisterScreen> {
                           height: 52,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _identitynumberController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng số CMND/CCCD';
+                              } else if (value.length < 12 &&value.length > 12 ) {
+                                return 'Số CMND//CCCD không hợp lệ. Vui lòng nhập lại';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
@@ -140,6 +187,17 @@ class _registerScreenState extends State<RegisterScreen> {
                           height: 52,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _phonenumberController,
+                            validator: (value){
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng số điện thoại';
+                              } else if (value.length < 8 &&value.length > 8 ) {
+                                return 'Số điện thoại không hợp lệ. Vui lòng nhập lại';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
@@ -167,19 +225,44 @@ class _registerScreenState extends State<RegisterScreen> {
                           height: 52,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _passwordController,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng mật khẩu';
+                              } else if (value.length < 8) {
+                                return 'Mật khẩu phải có ít nhất 8 kí tự';
+                              }
+                              else if (!value.contains(RegExp(r'[a-zA-z0-9]')))
+                                {
+                                  return 'Mật khẩu phải có ít nhất 1 kí tự viết hoa và 1 chữ số';
+                                }
+                              else{
+                                return null;
+                              }
+                            },
+                            obscureText: _isObscure,
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.text,
-                            decoration: const InputDecoration(
+                            decoration: InputDecoration(
+                                suffixIcon: IconButton(
+                                    icon: Icon(_isObscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(() {
+                                        _isObscure = !_isObscure;
+                                      });
+                                    }),
                                 contentPadding: EdgeInsets.all(10),
                                 hintText: 'mật khẩu',
-                                hintStyle: TextStyle(
+                                hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8))),
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
@@ -190,7 +273,14 @@ class _registerScreenState extends State<RegisterScreen> {
                         SizedBox(height: 20),
 
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              if (_formkey.currentState!.validate()){
+                                Navigator.pop(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()));
+                              }
+                            },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,

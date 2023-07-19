@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project1/Home_Screen.dart';
 import 'package:project1/Register_Screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -13,6 +14,13 @@ class LoginScreen extends StatefulWidget {
 class _loginScreenState extends State<LoginScreen> {
   ///Global key
   final _formkey = GlobalKey<FormState>();
+  ///Controller
+  final _phonenumberController = TextEditingController();
+  @override
+  void dispose(){
+    _phonenumberController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +94,17 @@ class _loginScreenState extends State<LoginScreen> {
                           height: 52,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _phonenumberController,
+                            validator: (value){
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng số điện thoại';
+                              } else if (value.length < 8 &&value.length > 8 ) {
+                                return 'Số điện thoại không hợp lệ. Vui lòng nhập lại';
+                              }
+                              else{
+                                return null;
+                              }
+                            },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
@@ -97,19 +116,22 @@ class _loginScreenState extends State<LoginScreen> {
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(8))),
+                                    BorderRadius.all(Radius.circular(8))),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
-                                        BorderRadius.all(Radius.circular(8)))),
+                                    BorderRadius.all(Radius.circular(8)))),
                           ),
                         ),
 
                         SizedBox(height: 43),
 
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => HomeScreen()));
+                            },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,

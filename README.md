@@ -8,7 +8,8 @@ Done:
 hoàn thiện giao diện
 Làm được TextTile
 
-Not Done
-Chưa validate
-Chưa lưu trữ được trên SQLite
+# 19/7/2023
+(2 tiếng 43 phút)
+Done: Validate || Not Done: chưa tìm hiểu xong SQLite Database
+
 
