@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Home_Screen.dart';
 import 'package:project1/Register_Screen.dart';
+import 'package:project1/UserModel.dart';
+
+var user = UserModel();
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -14,11 +18,24 @@ class LoginScreen extends StatefulWidget {
 class _loginScreenState extends State<LoginScreen> {
   ///Global key
   final _formkey = GlobalKey<FormState>();
+
   ///Controller
   final _phonenumberController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  late DbHelper dbHelper;
+
   @override
-  void dispose(){
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dbHelper = DbHelper();
+  }
+
+  @override
+  void dispose() {
     _phonenumberController.dispose();
+    _passwordController.dispose();
     super.dispose();
   }
 
@@ -48,7 +65,8 @@ class _loginScreenState extends State<LoginScreen> {
                           color: Colors.grey.withOpacity(0.6),
                           spreadRadius: 4,
                           blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
                         ),
                       ],
                     ),
@@ -95,13 +113,12 @@ class _loginScreenState extends State<LoginScreen> {
                           width: widthScreen,
                           child: TextFormField(
                             controller: _phonenumberController,
-                            validator: (value){
+                            validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Vui lòng số điện thoại';
-                              } else if (value.length < 8 &&value.length > 8 ) {
+                              } else if (value.length < 8 && value.length > 8) {
                                 return 'Số điện thoại không hợp lệ. Vui lòng nhập lại';
-                              }
-                              else{
+                              } else {
                                 return null;
                               }
                             },
@@ -116,26 +133,39 @@ class _loginScreenState extends State<LoginScreen> {
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(8))),
+                                        BorderRadius.all(Radius.circular(8))),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(8)))),
+                                        BorderRadius.all(Radius.circular(8)))),
                           ),
                         ),
-
-                        SizedBox(height: 43),
-
+                        const SizedBox(height: 43),
                         TextButton(
-                            onPressed: () {
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context) => HomeScreen()));
+                            onPressed: () async {
+                              if (_formkey.currentState!.validate()) {
+                                await dbHelper
+                                    .getLoginUser(_phonenumberController.text)
+                                    .then((value) {
+                                      if(value != null){
+                                        user = value;
+                                        print('user: $user');
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) => HomeScreen()));
+                                      }else {
+                                        print('Dang nhap that bai');
+                                      }
+
+                                });
+                              }
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,
-                                minimumSize: Size(166, 52),
+                                minimumSize: const Size(166, 52),
                                 shape: const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)),
@@ -145,7 +175,7 @@ class _loginScreenState extends State<LoginScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 18),
                             )),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
                         TextButton(
                             onPressed: () {

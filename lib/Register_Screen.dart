@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Login_Screen.dart';
+import 'package:project1/UserModel.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
@@ -22,19 +24,22 @@ class _registerScreenState extends State<RegisterScreen> {
 
   /// show the password or not
   bool _isObscure = true;
+  late DbHelper dbHelper;
 
   @override
-  void dispose(){
+  void initState() {
+    super.initState();
+    dbHelper = DbHelper();
+  }
+
+  @override
+  void dispose() {
     _usernameController.dispose();
     _identitynumberController.dispose();
     _phonenumberController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +67,8 @@ class _registerScreenState extends State<RegisterScreen> {
                           color: Colors.grey.withOpacity(0.6),
                           spreadRadius: 4,
                           blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                          offset:
+                              const Offset(0, 3), // changes position of shadow
                         ),
                       ],
                     ),
@@ -113,12 +119,11 @@ class _registerScreenState extends State<RegisterScreen> {
                               if (value == null || value.isEmpty) {
                                 return 'Vui lòng nhập Họ và tên';
                               } else if (value.length < 4) {
-                                return 'Họ và tên phải có ít nhất 4 kí tự';}
-                                else if (!value.contains(' ') || value.contains(RegExp(r'[0-9]')))
-                                  {
-                                    return 'Họ tên không hợp lệ. Xin vui lòng nhập lại';
-                                  }
-                               else {
+                                return 'Họ và tên phải có ít nhất 4 kí tự';
+                              } else if (!value.contains(' ') ||
+                                  value.contains(RegExp(r'[0-9]'))) {
+                                return 'Họ tên không hợp lệ. Xin vui lòng nhập lại';
+                              } else {
                                 return null;
                               }
                             },
@@ -142,7 +147,7 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
 
                         ///So CMND/CCCD
                         SizedBox(
@@ -153,10 +158,10 @@ class _registerScreenState extends State<RegisterScreen> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Vui lòng số CMND/CCCD';
-                              } else if (value.length < 12 &&value.length > 12 ) {
+                              } else if (value.length < 12 &&
+                                  value.length > 12) {
                                 return 'Số CMND//CCCD không hợp lệ. Vui lòng nhập lại';
-                              }
-                              else{
+                              } else {
                                 return null;
                               }
                             },
@@ -180,7 +185,7 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
 
                         ///Số điện thoại
                         SizedBox(
@@ -188,13 +193,12 @@ class _registerScreenState extends State<RegisterScreen> {
                           width: widthScreen,
                           child: TextFormField(
                             controller: _phonenumberController,
-                            validator: (value){
+                            validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Vui lòng số điện thoại';
-                              } else if (value.length < 8 &&value.length > 8 ) {
+                              } else if (value.length < 8 && value.length > 8) {
                                 return 'Số điện thoại không hợp lệ. Vui lòng nhập lại';
-                              }
-                              else{
+                              } else {
                                 return null;
                               }
                             },
@@ -218,7 +222,7 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
 
                         ///mật khẩu
                         SizedBox(
@@ -231,12 +235,10 @@ class _registerScreenState extends State<RegisterScreen> {
                                 return 'Vui lòng mật khẩu';
                               } else if (value.length < 8) {
                                 return 'Mật khẩu phải có ít nhất 8 kí tự';
-                              }
-                              else if (!value.contains(RegExp(r'[a-zA-z0-9]')))
-                                {
-                                  return 'Mật khẩu phải có ít nhất 1 kí tự viết hoa và 1 chữ số';
-                                }
-                              else{
+                              } else if (!value
+                                  .contains(RegExp(r'[a-zA-z0-9]'))) {
+                                return 'Mật khẩu phải có ít nhất 1 kí tự viết hoa và 1 chữ số';
+                              } else {
                                 return null;
                               }
                             },
@@ -253,7 +255,7 @@ class _registerScreenState extends State<RegisterScreen> {
                                         _isObscure = !_isObscure;
                                       });
                                     }),
-                                contentPadding: EdgeInsets.all(10),
+                                contentPadding: const EdgeInsets.all(10),
                                 hintText: 'mật khẩu',
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
@@ -270,21 +272,18 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
 
                         TextButton(
-                            onPressed: () {
-                              if (_formkey.currentState!.validate()){
-                                Navigator.pop(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginScreen()));
+                            onPressed: () async {
+                              if (_formkey.currentState!.validate()) {
+                                _signup();
                               }
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,
-                                minimumSize: Size(166, 52),
+                                minimumSize: const Size(166, 52),
                                 shape: const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)),
@@ -304,5 +303,17 @@ class _registerScreenState extends State<RegisterScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _signup() async {
+    final user = UserModel(
+        user_name: _usernameController.text,
+        id_number: _identitynumberController.text,
+        phone_number: _phonenumberController.text,
+        password: _passwordController.text);
+    await dbHelper.saveData(user).then((value) {
+      Navigator.pop(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    });
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:project1/Profile_Screen.dart';
 
@@ -14,6 +15,14 @@ class EditProfileScreen extends StatefulWidget {
 class _editProfileScreenState extends State<EditProfileScreen> {
   ///Global key
   final _formkey = GlobalKey<FormState>();
+
+  late DbHelper dbHelper;
+
+  @override
+  void initState() {
+    super.initState();
+    dbHelper = DbHelper();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +50,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           color: Colors.grey.withOpacity(0.6),
                           spreadRadius: 4,
                           blurRadius: 7,
-                          offset: Offset(0, 3), // changes position of shadow
+                          offset: const Offset(0, 3), // changes position of shadow
                         ),
                       ],
                     ),
@@ -79,7 +88,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             width: 90,
                             decoration: BoxDecoration(
                                 borderRadius:
-                                    BorderRadius.all(Radius.circular(100)),
+                                    const BorderRadius.all(Radius.circular(100)),
                                 border: Border.all(
                                     color: Colors.blueAccent, width: 5)),
                             child: const Image(
@@ -98,17 +107,17 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           child: TextFormField(
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.text,
-                            decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
-                                hintText: 'Họ và tên',
-                                hintStyle: TextStyle(
+                            decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.all(10),
+                                hintText: user?.user_name ?? 'Ho va ten',
+                                hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8))),
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
@@ -116,7 +125,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
 
                         ///Số điện thoại
                         SizedBox(
@@ -125,17 +134,17 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           child: TextFormField(
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
-                                hintText: 'Số điện thoại',
-                                hintStyle: TextStyle(
+                            decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.all(10),
+                                hintText: user?.phone_number ?? 'So dien thoai',
+                                hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8))),
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
@@ -143,7 +152,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
 
                         ///So CMND/CCCD
                         SizedBox(
@@ -152,17 +161,17 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           child: TextFormField(
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
-                            decoration: const InputDecoration(
-                                contentPadding: EdgeInsets.all(10),
-                                hintText: 'Số CMND/CCCD',
-                                hintStyle: TextStyle(
+                            decoration: InputDecoration(
+                                contentPadding: const EdgeInsets.all(10),
+                                hintText: user?.id_number ?? 'CMND/CCCD',
+                                hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
-                                enabledBorder: OutlineInputBorder(
+                                enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8))),
-                                focusedBorder: OutlineInputBorder(
+                                focusedBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
@@ -170,16 +179,18 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
 
-                        SizedBox(height: 35),
+                        const SizedBox(height: 35),
 
                         TextButton(
-                            onPressed: () {},
+                            onPressed: () async {
+
+                            },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
                                 foregroundColor: Colors.white,
-                                minimumSize: Size(166, 52),
+                                minimumSize: const Size(166, 52),
                                 shape: const RoundedRectangleBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(15)),

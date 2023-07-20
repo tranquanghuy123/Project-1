@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project1/Home_Screen.dart';
+import 'package:project1/Login_Screen.dart';
 
 import 'EditProfile_Screen.dart';
 
@@ -74,8 +75,7 @@ class ProfileScreen extends StatelessWidget{
                      height: 25,
                      width: 171,
                      color: Colors.red,
-
-                     child: Text('Link với tên sau khi ĐN'),
+                     child: Text(user.user_name ?? ''),
                    )
 
                  ],
