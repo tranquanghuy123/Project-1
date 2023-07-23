@@ -72,10 +72,11 @@ class ProfileScreen extends StatelessWidget{
                    SizedBox(height: 10),
 
                    Container(
+                     alignment: Alignment.center,
                      height: 25,
                      width: 171,
-                     color: Colors.red,
-                     child: Text(user.user_name ?? ''),
+                     //color: Colors.red,
+                     child: Text(user.user_name ?? '', style: TextStyle( fontSize: 18, color: Colors.white),),
                    )
 
                  ],
