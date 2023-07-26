@@ -30,7 +30,7 @@ Coi thêm then và error
 
 # 24/7/2023
 Thời gian làm ( 1 tiếng)
-Đã hoàn thành: soạn notion throw exeption
+Đã hoàn thành: soạn notion throw exeption, tìm hiểu kiểu dữ liệu Generic
 
 ||
 
@@ -48,3 +48,5 @@ Thời gian làm (3 tiếng 50)
 Đã hoàn thành: soạn notion future, await, async
 
 Chưa hoàn thành: Update thông tin user
+
+
