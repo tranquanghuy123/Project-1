@@ -16,5 +16,29 @@ Done: Validate || Not Done: chưa tìm hiểu xong SQLite Database
 (4 tiếng 5 phút)
 Làm theo clip https://www.youtube.com/watch?v=olnurZylCzc&t=202s&ab_channel=SampleCode nhưng không hiểu
 
+# 23/7/2023
+Thời gian làm (40 phút)
+Đã hoàn thành: chỉnh sửa khung validate, google toast, notification toast)
 
+||
+
+Chưa hoàn thành
+
+Update thông tin cá nhân
+Chưa soạn async, await, tìm hiểu future
+Coi thêm then và error
+
+# 24/7/2023
+Thời gian làm ( 1 tiếng)
+Đã hoàn thành: soạn notion throw exeption
+
+||
+
+Chưa hoàn thành
+
+Update thông tin cá nhân
+Chưa soạn async, await, tìm hiểu future
+Coi thêm then và error
+
+# 25/7/2023 : Off
 

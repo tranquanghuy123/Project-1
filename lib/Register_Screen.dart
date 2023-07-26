@@ -107,11 +107,9 @@ class _registerScreenState extends State<RegisterScreen> {
                                   color: Colors.orange, fontSize: 17)),
                         ),
 
-                        const SizedBox(height: 10),
-
                         ///Ho va ten
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
                             controller: _usernameController,
@@ -134,6 +132,9 @@ class _registerScreenState extends State<RegisterScreen> {
                                 hintText: 'Họ và tên',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 18),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -147,11 +148,9 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 10),
-
                         ///So CMND/CCCD
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
                             controller: _identitynumberController,
@@ -172,6 +171,9 @@ class _registerScreenState extends State<RegisterScreen> {
                                 hintText: 'Số CMND/CCCD',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 18),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -185,11 +187,9 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 10),
-
                         ///Số điện thoại
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
                             controller: _phonenumberController,
@@ -209,6 +209,9 @@ class _registerScreenState extends State<RegisterScreen> {
                                 hintText: 'Số điện thoại',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 18),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -222,11 +225,9 @@ class _registerScreenState extends State<RegisterScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 10),
-
                         ///mật khẩu
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
                             controller: _passwordController,
@@ -259,6 +260,9 @@ class _registerScreenState extends State<RegisterScreen> {
                                 hintText: 'mật khẩu',
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
                                 enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -311,7 +315,7 @@ class _registerScreenState extends State<RegisterScreen> {
         id_number: _identitynumberController.text,
         phone_number: _phonenumberController.text,
         password: _passwordController.text);
-    await dbHelper.saveData(user).then((value) {
+    await DbHelper.saveData(user).then((value) {
       Navigator.pop(
           context, MaterialPageRoute(builder: (context) => LoginScreen()));
     });

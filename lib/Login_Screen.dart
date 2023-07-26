@@ -3,6 +3,7 @@ import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Home_Screen.dart';
 import 'package:project1/Register_Screen.dart';
 import 'package:project1/UserModel.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 var user = UserModel();
 
@@ -109,7 +110,7 @@ class _loginScreenState extends State<LoginScreen> {
 
                         ///Số điện thoại
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
                             controller: _phonenumberController,
@@ -129,17 +130,20 @@ class _loginScreenState extends State<LoginScreen> {
                                 hintText: 'Số điện thoại',
                                 hintStyle: TextStyle(
                                     color: Colors.black, fontSize: 18),
-                                enabledBorder: OutlineInputBorder(
+                              enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8))),
+                               border: OutlineInputBorder(
+                                   borderRadius: BorderRadius.all(Radius.circular(8))
+                               ),
                                 focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8)))),
-                          ),
+                              )
                         ),
                         const SizedBox(height: 43),
                         TextButton(
@@ -198,7 +202,42 @@ class _loginScreenState extends State<LoginScreen> {
                                       color: Colors.blueAccent, fontSize: 18),
                                 ),
                               ],
-                            ))
+                            )),
+
+                        SizedBox(height: 20),
+                        ///Google
+                        TextButton(
+                            onPressed: () {
+                              Fluttertoast.showToast(
+                                  msg: 'successful google login!',
+                                  toastLength: Toast.LENGTH_SHORT,
+                                  gravity: ToastGravity.TOP,
+                                  timeInSecForIosWeb: 2,
+                                  backgroundColor: Colors.green,
+                                  textColor: Colors.black,
+                                  fontSize: 15);
+                            },
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.deepOrange,
+                                minimumSize: const Size(354, 52),
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    side: BorderSide(
+                                        width: 2, color: Colors.deepOrange))),
+                            child: const Row(
+                              children: [
+                                Image(image: AssetImage('assets/icons/google.png')),
+                                SizedBox(width: 101),
+                                Text(
+                                  'Google',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 15,
+                                      fontFamily: 'Product Sans'),
+                                )
+                              ],
+                            )),
                       ],
                     ),
                   )

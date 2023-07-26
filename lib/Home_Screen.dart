@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project1/Profile_Screen.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -63,14 +64,27 @@ class HomeScreen extends StatelessWidget {
                                     MaterialPageRoute(
                                         builder: (context) => ProfileScreen()));
                               },
-                              child: Image(
-                                  image: AssetImage('assets/icons/profile1.png')),
+                              child: const Image(
+                                  image:
+                                      AssetImage('assets/icons/profile1.png')),
                             ),
                             SizedBox(width: 11),
-                            Icon(
-                              Icons.notifications,
-                              color: Colors.white,
-                              size: 26,
+                            GestureDetector(
+                              onTap: () {
+                                Fluttertoast.showToast(
+                                    msg: 'Không có thông báo!',
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.TOP,
+                                    timeInSecForIosWeb: 2,
+                                    backgroundColor: Colors.yellowAccent,
+                                    textColor: Colors.black,
+                                    fontSize: 15);
+                              },
+                              child: const Icon(
+                                Icons.notifications,
+                                color: Colors.white,
+                                size: 26,
+                              ),
                             )
                           ],
                         ),

@@ -16,6 +16,11 @@ class _editProfileScreenState extends State<EditProfileScreen> {
   ///Global key
   final _formkey = GlobalKey<FormState>();
 
+  ///Controller
+  final _usernameController = TextEditingController();
+  final _phonenumberController = TextEditingController();
+  final _identitynumberController = TextEditingController();
+
   late DbHelper dbHelper;
 
   @override

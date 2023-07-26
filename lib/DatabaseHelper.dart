@@ -6,7 +6,7 @@ import 'package:path/path.dart';
 import 'dart:io' as io;
 
 class DbHelper {
-  static Database? _db;
+   static Database? _db;
 
   static const String DB_Name = 'test.db';
   static const String Table_User = 'user';
@@ -17,22 +17,23 @@ class DbHelper {
   static const String C_PhoneNumber = 'phone_number';
   static const String C_Password = 'password';
 
-  Future<Database?> get db async {
+   static Future<Database?> get db async {
+
     if (_db != null) {
       return _db;
     }
-    _db = await initDb();
+    _db =  await initDb();
     return _db;
   }
 
-  initDb() async {
+  static Future<Database?> initDb() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, DB_Name);
     var db = await openDatabase(path, version: Version, onCreate: _onCreate);
     return db;
   }
 
-  _onCreate(Database db, int intVersion) async {
+   static Future<void> _onCreate(Database db, int intVersion) async {
     await db.execute("CREATE TABLE $Table_User ("
         " $C_UserName TEXT, "
         " $C_IdNumber TEXT, "
@@ -42,7 +43,7 @@ class DbHelper {
         ")");
   }
 
-  Future<void> saveData(UserModel user) async {
+ static Future<void> saveData(UserModel user) async {
     var dbClient = await db;
     await dbClient?.insert(Table_User, user.toMap());
   }
