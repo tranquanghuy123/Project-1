@@ -42,3 +42,9 @@ Coi thêm then và error
 
 # 25/7/2023 : Off
 
+# 26/7/2023
+Thời gian làm (3 tiếng 50)
+
+Đã hoàn thành: soạn notion future, await, async
+
+Chưa hoàn thành: Update thông tin user
