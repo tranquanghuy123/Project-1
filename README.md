@@ -46,7 +46,9 @@ Coi thêm then và error
 Thời gian làm (3 tiếng 50)
 
 Đã hoàn thành: soạn notion future, await, async
+link notion: https://www.notion.so/Asynchronous-async-await-future-a58b9b4939e0461689eb800ce5c797d4?pvs=4
 
 Chưa hoàn thành: Update thông tin user
 
 
+# 27/7/2023
