@@ -52,3 +52,6 @@ Chưa hoàn thành: Update thông tin user
 
 
 # 27/7/2023
+Thời gian làm ( 2 tiếng)
+Tìm hiểu về try, catch, assert
+link notion: https://www.notion.so/Exception-trong-DART-6c8155889ec64f9885f07fee0825f376?pvs=4
