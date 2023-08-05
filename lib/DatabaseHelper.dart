@@ -8,16 +8,23 @@ import 'dart:io' as io;
 class DbHelper {
    static Database? _db;
 
+   ///Tên database
   static const String DB_Name = 'test.db';
+
+  ///Tên bảng
   static const String Table_User = 'user';
   static const int Version = 1;
 
+
+  ///Tên của column (các thuộc tính trong bảng)
   static const String C_UserName = 'user_name';
   static const String C_IdNumber = 'id_number';
   static const String C_PhoneNumber = 'phone_number';
   static const String C_Password = 'password';
 
-   static Future<Database?> get db async {
+
+  ///Hàm Database (DB)
+  static Future<Database?> get db async {
 
     if (_db != null) {
       return _db;
@@ -60,10 +67,11 @@ class DbHelper {
     return null;
   }
 
-  Future<void> updateUser(UserModel user) async {
+  static Future<void> updateUser(UserModel user) async {
     var dbClient = await db;
-    await dbClient?.update(Table_User, user.toMap(),
+    var res = await dbClient?.update(Table_User, user.toMap(),
         where: '$C_IdNumber = ?', whereArgs: [user.id_number]);
+    print(res);
   }
 
   // Future<int> deleteUser(String user_id) async {

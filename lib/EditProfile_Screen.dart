@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:project1/Profile_Screen.dart';
+import 'UserModel.dart';
 
 class EditProfileScreen extends StatefulWidget {
   EditProfileScreen({super.key});
@@ -13,6 +14,8 @@ class EditProfileScreen extends StatefulWidget {
 }
 
 class _editProfileScreenState extends State<EditProfileScreen> {
+
+
   ///Global key
   final _formkey = GlobalKey<FormState>();
 
@@ -27,6 +30,14 @@ class _editProfileScreenState extends State<EditProfileScreen> {
   void initState() {
     super.initState();
     dbHelper = DbHelper();
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _identitynumberController.dispose();
+    _phonenumberController.dispose();
+    super.dispose();
   }
 
   @override
@@ -103,13 +114,26 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
                         const SizedBox(height: 38),
 
-                        const SizedBox(height: 10),
 
                         ///Ho va ten
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _usernameController,
+                            readOnly: false,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng nhập Họ và tên';
+                              } else if (value.length < 4) {
+                                return 'Họ và tên phải có ít nhất 4 kí tự';
+                              } else if (!value.contains(' ') ||
+                                  value.contains(RegExp(r'[0-9]'))) {
+                                return 'Họ tên không hợp lệ. Xin vui lòng nhập lại';
+                              } else {
+                                return null;
+                              }
+                            },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
@@ -117,6 +141,9 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                                 hintText: user?.user_name ?? 'Ho va ten',
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
+                                border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
                                 enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -130,20 +157,33 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 10),
 
                         ///Số điện thoại
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _phonenumberController,
+                            readOnly: false,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng số điện thoại';
+                              } else if (value.length < 8 && value.length > 8) {
+                                return 'Số điện thoại không hợp lệ. Vui lòng nhập lại';
+                              } else {
+                                return null;
+                              }
+                            },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(10),
-                                hintText: user?.phone_number ?? 'So dien thoai',
+                                hintText: user?.phone_number ?? _phonenumberController.text,
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
+                                border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
                                 enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -157,13 +197,24 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           ),
                         ),
 
-                        const SizedBox(height: 10),
 
                         ///So CMND/CCCD
                         SizedBox(
-                          height: 52,
+                          height: 70,
                           width: widthScreen,
                           child: TextFormField(
+                            controller: _identitynumberController,
+                            readOnly: false,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Vui lòng số CMND/CCCD';
+                              } else if (value.length < 12 &&
+                                  value.length > 12) {
+                                return 'Số CMND//CCCD không hợp lệ. Vui lòng nhập lại';
+                              } else {
+                                return null;
+                              }
+                            },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
@@ -171,6 +222,9 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                                 hintText: user?.id_number ?? 'CMND/CCCD',
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
+                                border: const OutlineInputBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(8))
+                                ),
                                 enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
@@ -190,7 +244,9 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
                         TextButton(
                             onPressed: () async {
-
+                              if (_formkey.currentState!.validate()){
+                               _update();
+                              }
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
@@ -216,4 +272,18 @@ class _editProfileScreenState extends State<EditProfileScreen> {
       ),
     );
   }
+
+  ///Update funtion
+  Future<void> _update() async {
+    String uname = _usernameController.text;
+    String uPhoneNumber = _phonenumberController.text;
+    String uid = _identitynumberController.text;
+
+    if (_formkey.currentState!.validate()){
+      _formkey.currentState!.save();
+      UserModel user = UserModel(user_name: uname, phone_number: uPhoneNumber, id_number: uid);
+      DbHelper.updateUser(user);
+    }
+  }
+
 }

@@ -260,7 +260,7 @@ class _registerScreenState extends State<RegisterScreen> {
                                 hintText: 'mật khẩu',
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
-                                border: OutlineInputBorder(
+                                border: const OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(8))
                                 ),
                                 enabledBorder: const OutlineInputBorder(
