@@ -1,8 +1,11 @@
+
 import 'package:flutter/material.dart';
+import 'package:project1/DataGlobal.dart';
 import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:project1/Profile_Screen.dart';
 import 'UserModel.dart';
+import 'package:project1/DataGlobal.dart';
 
 class EditProfileScreen extends StatefulWidget {
   EditProfileScreen({super.key});
@@ -26,11 +29,28 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
   late DbHelper dbHelper;
 
+   UserModel? user;
+
   @override
   void initState() {
     super.initState();
     dbHelper = DbHelper();
+    initData();
+
   }
+  void initData() async{
+    String tempUserID = '0';
+    if (DataGlobal.userID != null)
+    {
+      tempUserID = DataGlobal.userID!;
+    }
+    ///Gia tri cu~
+    ///dbHelper.getUserById(DataGlobal.userID);
+
+    ///Gia tri moi da gan vao bien temp
+    dbHelper.getUserById(tempUserID);
+    user = await dbHelper.getUserById(tempUserID);
+}
 
   @override
   void dispose() {
@@ -83,7 +103,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             child: const Image(
                                 image: AssetImage('assets/icons/arrow.png'))),
                         const SizedBox(width: 36),
-                        const Text('Thông tin cá nhân',
+                        const Text('Thông tin cá nhân 2',
                             style: TextStyle(color: Colors.white, fontSize: 21))
                       ],
                     ),
@@ -244,6 +264,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
                         TextButton(
                             onPressed: () async {
+                              print('abc');
                               if (_formkey.currentState!.validate()){
                                _update();
                               }
@@ -277,7 +298,8 @@ class _editProfileScreenState extends State<EditProfileScreen> {
   Future<void> _update() async {
     String uname = _usernameController.text;
     String uPhoneNumber = _phonenumberController.text;
-    String uid = _identitynumberController.text;
+    String uid = DataGlobal.userID ?? '0';
+    print('abc');
 
     if (_formkey.currentState!.validate()){
       _formkey.currentState!.save();

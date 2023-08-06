@@ -72,7 +72,21 @@ class DbHelper {
     var res = await dbClient?.update(Table_User, user.toMap(),
         where: '$C_IdNumber = ?', whereArgs: [user.id_number]);
     print(res);
+    print(user.id_number);
   }
+
+  Future<UserModel?> getUserById(String userId) async {
+     var dbClient = await db;
+     var res = await dbClient?.rawQuery("SELECT * FROM $Table_User WHERE "
+         "$C_IdNumber = '$userId'");
+
+     if (res?.isNotEmpty ?? false) {
+       return UserModel.fromMap(res!.first);
+     }
+
+     return null;
+   }
+
 
   // Future<int> deleteUser(String user_id) async {
   //   var dbClient = await db;

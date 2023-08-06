@@ -4,6 +4,7 @@ import 'package:project1/Home_Screen.dart';
 import 'package:project1/Register_Screen.dart';
 import 'package:project1/UserModel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:project1/DataGlobal.dart';
 
 var user = UserModel();
 
@@ -154,6 +155,7 @@ class _loginScreenState extends State<LoginScreen> {
                                     .then((value) {
                                       if(value != null){
                                         user = value;
+                                        DataGlobal.userID = user.id_number;
                                         print('user: $user');
                                         Navigator.push(
                                             context,
