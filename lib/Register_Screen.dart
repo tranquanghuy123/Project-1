@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:project1/UserModel.dart';
@@ -297,6 +299,34 @@ class _registerScreenState extends State<RegisterScreen> {
                               style: TextStyle(
                                   fontWeight: FontWeight.w700, fontSize: 18),
                             )),
+
+                        SizedBox(height: 20),
+                        ///Google
+                        TextButton(
+                            onPressed: () {
+                              //signInWithGoogle();
+                            },
+                            style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.deepOrange,
+                                minimumSize: const Size(354, 52),
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.all(Radius.circular(10)),
+                                    side: BorderSide(
+                                        width: 2, color: Colors.deepOrange))),
+                            child: const Row(
+                              children: [
+                                Image(image: AssetImage('assets/icons/google.png')),
+                                SizedBox(width: 101),
+                                Text(
+                                  'Google',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 15,
+                                      fontFamily: 'Product Sans'),
+                                )
+                              ],
+                            )),
                       ],
                     ),
                   )
@@ -320,4 +350,18 @@ class _registerScreenState extends State<RegisterScreen> {
           context, MaterialPageRoute(builder: (context) => LoginScreen()));
     });
   }
+
+  // signInWithGoogle() async {
+  //   GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //   GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  //
+  //   AuthCredential credential = GoogleAuthProvider.credential(
+  //     accessToken: googleAuth?.accessToken,
+  //     idToken: googleAuth?.idToken
+  //   );
+  //
+  //   UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+  //
+  //   print(userCredential.user?.displayName);
+  // }
 }
