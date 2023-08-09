@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/Profile_Screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,6 +8,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
     double heightScreen = MediaQuery.of(context).size.height;
+
+    final user = FirebaseAuth.instance.currentUser!;
     return SafeArea(
       child: Scaffold(
         body: Container(

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project1/DatabaseHelper.dart';
 import 'package:project1/Home_Screen.dart';
 import 'package:project1/Register_Screen.dart';
@@ -210,14 +212,7 @@ class _loginScreenState extends State<LoginScreen> {
                         ///Google
                         TextButton(
                             onPressed: () {
-                              Fluttertoast.showToast(
-                                  msg: 'successful google login!',
-                                  toastLength: Toast.LENGTH_SHORT,
-                                  gravity: ToastGravity.TOP,
-                                  timeInSecForIosWeb: 2,
-                                  backgroundColor: Colors.green,
-                                  textColor: Colors.black,
-                                  fontSize: 15);
+                              signInWithGoogle();
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.white,
@@ -250,5 +245,24 @@ class _loginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  signInWithGoogle() async {
+    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth?.accessToken,
+        idToken: googleAuth?.idToken
+    );
+
+    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+
+    print(userCredential.user?.displayName);
+
+    if (userCredential.user != null)
+    {
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+    }
   }
 }

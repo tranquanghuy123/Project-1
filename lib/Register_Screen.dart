@@ -2,8 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project1/DatabaseHelper.dart';
+import 'package:project1/Google_Sign_in.dart';
+import 'package:project1/Home_Screen.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:project1/UserModel.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
@@ -304,7 +307,7 @@ class _registerScreenState extends State<RegisterScreen> {
                         ///Google
                         TextButton(
                             onPressed: () {
-                              //signInWithGoogle();
+                              final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.white,
@@ -363,5 +366,10 @@ class _registerScreenState extends State<RegisterScreen> {
   //   UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
   //
   //   print(userCredential.user?.displayName);
+  //
+  //   if (userCredential.user != null)
+  //     {
+  //       Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+  //     }
   // }
 }
