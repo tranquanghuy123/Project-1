@@ -55,3 +55,17 @@ Chưa hoàn thành: Update thông tin user
 Thời gian làm ( 2 tiếng)
 Tìm hiểu về try, catch, assert
 link notion: https://www.notion.so/Exception-trong-DART-6c8155889ec64f9885f07fee0825f376?pvs=4
+
+# 7/8/2023
+Thời gian làm (4 tiếng)
+Làm link with google
+
+# 8/8/2023
+Thời gian làm (3 tiếng)
+sửa lỗi link with google
+
+# 8/8/2023
+Thời gian làm (7 tiếng)
+chỉnh sửa cập nhật tên với google, sqlite
+
+# 10/8/2023

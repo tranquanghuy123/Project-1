@@ -1,4 +1,5 @@
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/DataGlobal.dart';
 import 'package:project1/DatabaseHelper.dart';
@@ -65,6 +66,9 @@ class _editProfileScreenState extends State<EditProfileScreen> {
     double widthScreen = MediaQuery.of(context).size.width;
     double heightScreen = MediaQuery.of(context).size.height;
 
+    final googleUser = FirebaseAuth.instance.currentUser!;
+
+
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -103,7 +107,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             child: const Image(
                                 image: AssetImage('assets/icons/arrow.png'))),
                         const SizedBox(width: 36),
-                        const Text('Thông tin cá nhân 2',
+                        const Text('Thông tin cá nhân',
                             style: TextStyle(color: Colors.white, fontSize: 21))
                       ],
                     ),
@@ -158,7 +162,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(10),
-                                hintText: user?.user_name ?? 'Ho va ten',
+                                hintText: user?.user_name ?? googleUser.displayName,
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
                                 border: const OutlineInputBorder(
@@ -198,7 +202,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(10),
-                                hintText: user?.phone_number ?? _phonenumberController.text,
+                                hintText: user?.phone_number ?? googleUser.phoneNumber,
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
                                 border: const OutlineInputBorder(
@@ -239,7 +243,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(10),
-                                hintText: user?.id_number ?? 'CMND/CCCD',
+                                hintText: user?.id_number ?? googleUser.uid,
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
                                 border: const OutlineInputBorder(

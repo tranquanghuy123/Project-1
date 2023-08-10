@@ -9,7 +9,6 @@ class HomeScreen extends StatelessWidget {
     double widthScreen = MediaQuery.of(context).size.width;
     double heightScreen = MediaQuery.of(context).size.height;
 
-    final user = FirebaseAuth.instance.currentUser!;
     return SafeArea(
       child: Scaffold(
         body: Container(

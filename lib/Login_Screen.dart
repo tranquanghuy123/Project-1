@@ -7,6 +7,8 @@ import 'package:project1/Register_Screen.dart';
 import 'package:project1/UserModel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project1/DataGlobal.dart';
+import 'package:project1/Google_Sign_in.dart';
+import 'package:provider/provider.dart';
 
 var user = UserModel();
 
@@ -212,7 +214,8 @@ class _loginScreenState extends State<LoginScreen> {
                         ///Google
                         TextButton(
                             onPressed: () {
-                              signInWithGoogle();
+                              final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
+                              provider.googleLogin();
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.white,
@@ -247,22 +250,22 @@ class _loginScreenState extends State<LoginScreen> {
     );
   }
 
-  signInWithGoogle() async {
-    GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
-
-    AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth?.accessToken,
-        idToken: googleAuth?.idToken
-    );
-
-    UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
-
-    print(userCredential.user?.displayName);
-
-    if (userCredential.user != null)
-    {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
-    }
-  }
+  // signInWithGoogle() async {
+  //   GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+  //   GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+  //
+  //   AuthCredential credential = GoogleAuthProvider.credential(
+  //       accessToken: googleAuth?.accessToken,
+  //       idToken: googleAuth?.idToken
+  //   );
+  //
+  //   UserCredential userCredential = await FirebaseAuth.instance.signInWithCredential(credential);
+  //
+  //   print(userCredential.user?.displayName);
+  //
+  //   if (userCredential.user != null)
+  //   {
+  //     Navigator.of(context).push(MaterialPageRoute(builder: (context) => HomeScreen()));
+  //   }
+  // }
 }
