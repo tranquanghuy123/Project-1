@@ -6,7 +6,7 @@ class UserModel {
 
   UserModel({this.user_name, this.id_number, this.phone_number, this.password});
 
-  get email => null;
+  //get email => null;
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{

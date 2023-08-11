@@ -69,3 +69,5 @@ Thời gian làm (7 tiếng)
 chỉnh sửa cập nhật tên với google, sqlite
 
 # 10/8/2023
+Thời gian làm (7 tiếng)
+Hiển thị được thông tin trên màn hình, chưa cập nhật được thông tin
