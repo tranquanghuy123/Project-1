@@ -348,10 +348,12 @@ class _registerScreenState extends State<RegisterScreen> {
         id_number: _identitynumberController.text,
         phone_number: _phonenumberController.text,
         password: _passwordController.text);
-    await DbHelper.saveData(user).then((value) {
-      Navigator.pop(
-          context, MaterialPageRoute(builder: (context) => LoginScreen()));
-    });
+    try {
+      await DbHelper.saveData(user);
+      Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    } catch (e) {
+      // Handle the error, e.g., show an error message
+    }
   }
 
   // signInWithGoogle() async {

@@ -40,7 +40,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
   }
   void initData() async{
-    String tempUserID = '0';
+    int tempUserID = 1;
     if (DataGlobal.userID != null)
     {
       tempUserID = DataGlobal.userID!;
@@ -302,12 +302,13 @@ class _editProfileScreenState extends State<EditProfileScreen> {
   Future<void> _update() async {
     String uname = _usernameController.text;
     String uPhoneNumber = _phonenumberController.text;
-    String uid = DataGlobal.userID ?? '0';
+    String uIdNumber = _identitynumberController.text;
+    int uid = DataGlobal.userID ?? 1;
     print('abc');
 
     if (_formkey.currentState!.validate()){
       _formkey.currentState!.save();
-      UserModel user = UserModel(user_name: uname, phone_number: uPhoneNumber, id_number: uid);
+      UserModel user = UserModel(user_name: uname, phone_number: uPhoneNumber, id_number: uIdNumber);
       DbHelper.updateUser(user);
     }
   }

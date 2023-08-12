@@ -1,15 +1,15 @@
 class UserModel {
+  int? user_id;
   String? id_number;
   String? user_name;
   String? phone_number;
   String? password;
 
-  UserModel({this.user_name, this.id_number, this.phone_number, this.password});
-
-  //get email => null;
+  UserModel({this.user_id ,this.user_name, this.id_number, this.phone_number, this.password});
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
+      'user_id': user_id,
       'user_name': user_name,
       'id_number': id_number,
       'phone_number': phone_number,
@@ -19,6 +19,7 @@ class UserModel {
   }
 
   UserModel.fromMap(Map<String, dynamic> map) {
+    user_id = map['user_id'];
     user_name = map['user_name'];
     id_number = map['id_number'];
     phone_number = map['phone_number'];

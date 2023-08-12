@@ -17,6 +17,7 @@ class DbHelper {
 
 
   ///Tên của column (các thuộc tính trong bảng)
+   static const int C_UserID = 1;
   static const String C_UserName = 'user_name';
   static const String C_IdNumber = 'id_number';
   static const String C_PhoneNumber = 'phone_number';
@@ -42,17 +43,19 @@ class DbHelper {
 
    static Future<void> _onCreate(Database db, int intVersion) async {
     await db.execute("CREATE TABLE $Table_User ("
+        " $C_UserID INTEGER, "
         " $C_UserName TEXT, "
         " $C_IdNumber TEXT, "
         " $C_PhoneNumber TEXT,"
         " $C_Password TEXT, "
-        " PRIMARY KEY ($C_IdNumber)"
+        " PRIMARY KEY ($C_UserID)"
         ")");
   }
 
- static Future<void> saveData(UserModel user) async {
+ static Future<int?> saveData(UserModel user) async {
     var dbClient = await db;
-    await dbClient?.insert(Table_User, user.toMap());
+    int? userId = await dbClient?.insert(Table_User, user.toMap());
+    return userId;
   }
 
   Future<UserModel?> getLoginUser(String phoneNumber) async {
@@ -70,15 +73,15 @@ class DbHelper {
   static Future<void> updateUser(UserModel user) async {
     var dbClient = await db;
     var res = await dbClient?.update(Table_User, user.toMap(),
-        where: '$C_IdNumber = ?', whereArgs: [user.id_number]);
+        where: '$C_UserID = ?', whereArgs: [user.user_id]);
     print(res);
-    print(user.id_number);
+    print(user.user_id);
   }
 
-  Future<UserModel?> getUserById(String userId) async {
+  Future<UserModel?> getUserById(int userId) async {
      var dbClient = await db;
      var res = await dbClient?.rawQuery("SELECT * FROM $Table_User WHERE "
-         "$C_IdNumber = '$userId'");
+         "$C_UserID = '$userId'");
 
      if (res?.isNotEmpty ?? false) {
        return UserModel.fromMap(res!.first);

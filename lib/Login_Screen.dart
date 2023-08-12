@@ -159,7 +159,7 @@ class _loginScreenState extends State<LoginScreen> {
                                     .then((value) {
                                       if(value != null){
                                         user = value;
-                                        DataGlobal.userID = user.id_number;
+                                        DataGlobal.userID = user.user_id;
                                         print('user: $user');
                                         Navigator.push(
                                             context,

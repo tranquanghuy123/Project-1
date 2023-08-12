@@ -34,7 +34,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> initData() async {
     googleUser = FirebaseAuth.instance.currentUser;
-    String tempUserID = '0';
+    int tempUserID = 1;
     if (DataGlobal.userID != null) {
       tempUserID = DataGlobal.userID!;
 
