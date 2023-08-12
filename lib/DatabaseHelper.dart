@@ -6,9 +6,9 @@ import 'package:path/path.dart';
 import 'dart:io' as io;
 
 class DbHelper {
-   static Database? _db;
+  static Database? _db;
 
-   ///Tên database
+  ///Tên database
   static const String DB_Name = 'test.db';
 
   ///Tên bảng
@@ -17,7 +17,7 @@ class DbHelper {
 
 
   ///Tên của column (các thuộc tính trong bảng)
-   static const int C_UserID = 1;
+  static const int C_UserID = 1;
   static const String C_UserName = 'user_name';
   static const String C_IdNumber = 'id_number';
   static const String C_PhoneNumber = 'phone_number';
@@ -41,7 +41,7 @@ class DbHelper {
     return db;
   }
 
-   static Future<void> _onCreate(Database db, int intVersion) async {
+  static Future<void> _onCreate(Database db, int intVersion) async {
     await db.execute("CREATE TABLE $Table_User ("
         " $C_UserID INTEGER, "
         " $C_UserName TEXT, "
@@ -52,7 +52,7 @@ class DbHelper {
         ")");
   }
 
- static Future<int?> saveData(UserModel user) async {
+  static Future<int?> saveData(UserModel user) async {
     var dbClient = await db;
     int? userId = await dbClient?.insert(Table_User, user.toMap());
     return userId;
@@ -79,23 +79,22 @@ class DbHelper {
   }
 
   Future<UserModel?> getUserById(int userId) async {
-     var dbClient = await db;
-     var res = await dbClient?.rawQuery("SELECT * FROM $Table_User WHERE "
-         "$C_UserID = '$userId'");
+    var dbClient = await db;
+    var res = await dbClient?.rawQuery("SELECT * FROM $Table_User WHERE "
+        "$C_UserID = '$userId'");
 
-     if (res?.isNotEmpty ?? false) {
-       return UserModel.fromMap(res!.first);
-     }
+    if (res?.isNotEmpty ?? false) {
+      return UserModel.fromMap(res!.first);
+    }
 
-     return null;
-   }
+    return null;
+  }
 
 
-  // Future<int> deleteUser(String user_id) async {
-  //   var dbClient = await db;
-  //   var res = await dbClient
-  //       .delete(Table_User, where: '$C_UserID = ?', whereArgs: [user_id]);
-  //   return res;
-  // }
+// Future<int> deleteUser(String user_id) async {
+//   var dbClient = await db;
+//   var res = await dbClient
+//       .delete(Table_User, where: '$C_UserID = ?', whereArgs: [user_id]);
+//   return res;
+// }
 }
-
