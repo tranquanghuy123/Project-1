@@ -49,8 +49,13 @@ class _editProfileScreenState extends State<EditProfileScreen> {
     ///dbHelper.getUserById(DataGlobal.userID);
 
     ///Gia tri moi da gan vao bien temp
-    dbHelper.getUserById(tempUserID);
+    //dbHelper.getUserById(tempUserID);
     user = await dbHelper.getUserById(tempUserID);
+
+
+    _usernameController.text = user?.user_name ?? '';
+    _phonenumberController.text = user?.phone_number ?? '';
+    _identitynumberController.text = user?.id_number ?? '';
 }
 
   @override
@@ -145,35 +150,35 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           width: widthScreen,
                           child: TextFormField(
                             controller: _usernameController,
-                            readOnly: false,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Vui lòng nhập Họ và tên';
-                              } else if (value.length < 4) {
-                                return 'Họ và tên phải có ít nhất 4 kí tự';
-                              } else if (!value.contains(' ') ||
-                                  value.contains(RegExp(r'[0-9]'))) {
-                                return 'Họ tên không hợp lệ. Xin vui lòng nhập lại';
-                              } else {
-                                return null;
-                              }
-                            },
+                            //readOnly: false,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return 'Vui lòng nhập Họ và tên';
+                            //   } else if (value.length < 4) {
+                            //     return 'Họ và tên phải có ít nhất 4 kí tự';
+                            //   } else if (!value.contains(' ') ||
+                            //       value.contains(RegExp(r'[0-9]'))) {
+                            //     return 'Họ tên không hợp lệ. Xin vui lòng nhập lại';
+                            //   } else {
+                            //     return null;
+                            //   }
+                            // },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(10),
-                                hintText: user?.user_name ?? googleUser.displayName,
-                                hintStyle: const TextStyle(
-                                    color: Colors.black, fontSize: 18),
-                                border: const OutlineInputBorder(
+                            decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.all(10),
+                                // hintText: user?.user_name ?? googleUser.displayName,
+                                // hintStyle: const TextStyle(
+                                //     color: Colors.black, fontSize: 18),
+                                border: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(8))
                                 ),
-                                enabledBorder: const OutlineInputBorder(
+                                enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8))),
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
@@ -188,32 +193,32 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           width: widthScreen,
                           child: TextFormField(
                             controller: _phonenumberController,
-                            readOnly: false,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Vui lòng số điện thoại';
-                              } else if (value.length < 8 && value.length > 8) {
-                                return 'Số điện thoại không hợp lệ. Vui lòng nhập lại';
-                              } else {
-                                return null;
-                              }
-                            },
+                            // readOnly: false,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return 'Vui lòng số điện thoại';
+                            //   } else if (value.length < 8 && value.length > 8) {
+                            //     return 'Số điện thoại không hợp lệ. Vui lòng nhập lại';
+                            //   } else {
+                            //     return null;
+                            //   }
+                            // },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.all(10),
-                                hintText: user?.phone_number ?? googleUser.phoneNumber,
-                                hintStyle: const TextStyle(
-                                    color: Colors.black, fontSize: 18),
-                                border: const OutlineInputBorder(
+                            decoration: const InputDecoration(
+                                contentPadding: EdgeInsets.all(10),
+                                // hintText: user?.phone_number ?? googleUser.phoneNumber,
+                                // hintStyle: const TextStyle(
+                                //     color: Colors.black, fontSize: 18),
+                                border: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(8))
                                 ),
-                                enabledBorder: const OutlineInputBorder(
+                                enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.grey),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8))),
-                                focusedBorder: const OutlineInputBorder(
+                                focusedBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         width: 1, color: Colors.blue),
                                     borderRadius:
@@ -228,17 +233,17 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                           width: widthScreen,
                           child: TextFormField(
                             controller: _identitynumberController,
-                            readOnly: false,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Vui lòng số CMND/CCCD';
-                              } else if (value.length < 12 &&
-                                  value.length > 12) {
-                                return 'Số CMND//CCCD không hợp lệ. Vui lòng nhập lại';
-                              } else {
-                                return null;
-                              }
-                            },
+                            // readOnly: false,
+                            // validator: (value) {
+                            //   if (value == null || value.isEmpty) {
+                            //     return 'Vui lòng số CMND/CCCD';
+                            //   } else if (value.length < 12 &&
+                            //       value.length > 12) {
+                            //     return 'Số CMND//CCCD không hợp lệ. Vui lòng nhập lại';
+                            //   } else {
+                            //     return null;
+                            //   }
+                            // },
                             style: const TextStyle(fontSize: 18),
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
@@ -308,9 +313,15 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
     if (_formkey.currentState!.validate()){
       _formkey.currentState!.save();
-      UserModel user = UserModel(user_name: uname, phone_number: uPhoneNumber, id_number: uIdNumber);
-      DbHelper.updateUser(user);
+      UserModel user = UserModel(
+          user_name: uname,
+          phone_number: uPhoneNumber,
+          id_number: uIdNumber);
+      await DbHelper.updateUser(user);
     }
   }
+
+  // Method to change the value of the TextFormField
+
 
 }

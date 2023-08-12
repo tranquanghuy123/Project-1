@@ -17,7 +17,8 @@ class DbHelper {
 
 
   ///Tên của column (các thuộc tính trong bảng)
-  static const int C_UserID = 1;
+  //static const int C_UserID = 1;
+  static const String C_UserID = 'user_id';
   static const String C_UserName = 'user_name';
   static const String C_IdNumber = 'id_number';
   static const String C_PhoneNumber = 'phone_number';

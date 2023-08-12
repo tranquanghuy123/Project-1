@@ -76,3 +76,7 @@ Hiển thị được thông tin trên màn hình, chưa cập nhật được t
 Thời gian làm (5 tiếng)
 Chư sửa xong lỗi khi đăng kí user thì tự động điền id user t 1, 2, 3
 link notion: https://www.notion.so/set-controller-text-in-textformfield-flutter-ba630c098aef452a821a97d2791adc67?pvs=4
+
+# 12/8/2023
+Thời gian làm (3 tiếng)
+chạy đuoợc nhưng cập nhật thông tin k được
