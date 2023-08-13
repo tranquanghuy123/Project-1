@@ -7,6 +7,7 @@ import 'package:project1/Home_Screen.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:project1/UserModel.dart';
 import 'package:provider/provider.dart';
+import 'package:uuid/uuid.dart';
 
 class RegisterScreen extends StatefulWidget {
   RegisterScreen({super.key});
@@ -343,13 +344,16 @@ class _registerScreenState extends State<RegisterScreen> {
   }
 
   Future<void> _signup() async {
+    String id = DateTime.now().millisecondsSinceEpoch.remainder(100000).toString();
     final user = UserModel(
+        user_id: id,
         user_name: _usernameController.text,
         id_number: _identitynumberController.text,
         phone_number: _phonenumberController.text,
-        password: _passwordController.text);
+        password: _passwordController.text,);
     try {
       await DbHelper.saveData(user);
+
       Navigator.pop(context, MaterialPageRoute(builder: (context) => LoginScreen()));
     } catch (e) {
       // Handle the error, e.g., show an error message

@@ -2,7 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class  DataGlobal {
-  static int? userID;
+  static String? userID;
 
   static User? ggUser;
 }

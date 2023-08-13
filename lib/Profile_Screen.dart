@@ -27,14 +27,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      initData();
-    });
+    initData();
   }
 
   Future<void> initData() async {
     googleUser = FirebaseAuth.instance.currentUser;
-    int tempUserID = 1;
+    String tempUserID = '';
     if (DataGlobal.userID != null) {
       tempUserID = DataGlobal.userID!;
 

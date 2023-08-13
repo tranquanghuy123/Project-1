@@ -28,9 +28,8 @@ class _editProfileScreenState extends State<EditProfileScreen> {
   final _phonenumberController = TextEditingController();
   final _identitynumberController = TextEditingController();
 
-  late DbHelper dbHelper;
-
-   UserModel? user;
+  DbHelper? dbHelper;
+  UserModel? user;
 
   @override
   void initState() {
@@ -40,7 +39,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
   }
   void initData() async{
-    int tempUserID = 1;
+    String tempUserID = '';
     if (DataGlobal.userID != null)
     {
       tempUserID = DataGlobal.userID!;
@@ -50,7 +49,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
     ///Gia tri moi da gan vao bien temp
     //dbHelper.getUserById(tempUserID);
-    user = await dbHelper.getUserById(tempUserID);
+    user = await dbHelper?.getUserById(tempUserID);
 
 
     _usernameController.text = user?.user_name ?? '';
@@ -70,8 +69,6 @@ class _editProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     double widthScreen = MediaQuery.of(context).size.width;
     double heightScreen = MediaQuery.of(context).size.height;
-
-    final googleUser = FirebaseAuth.instance.currentUser!;
 
 
     return SafeArea(
@@ -167,9 +164,6 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             keyboardType: TextInputType.text,
                             decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
-                                // hintText: user?.user_name ?? googleUser.displayName,
-                                // hintStyle: const TextStyle(
-                                //     color: Colors.black, fontSize: 18),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(8))
                                 ),
@@ -207,9 +201,6 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             keyboardType: TextInputType.number,
                             decoration: const InputDecoration(
                                 contentPadding: EdgeInsets.all(10),
-                                // hintText: user?.phone_number ?? googleUser.phoneNumber,
-                                // hintStyle: const TextStyle(
-                                //     color: Colors.black, fontSize: 18),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.all(Radius.circular(8))
                                 ),
@@ -248,7 +239,7 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                                 contentPadding: const EdgeInsets.all(10),
-                                hintText: user?.id_number ?? googleUser.uid,
+                                hintText: user?.id_number ?? '',
                                 hintStyle: const TextStyle(
                                     color: Colors.black, fontSize: 18),
                                 border: const OutlineInputBorder(
@@ -308,16 +299,18 @@ class _editProfileScreenState extends State<EditProfileScreen> {
     String uname = _usernameController.text;
     String uPhoneNumber = _phonenumberController.text;
     String uIdNumber = _identitynumberController.text;
-    int uid = DataGlobal.userID ?? 1;
+    String uid = DataGlobal.userID ?? '';
     print('abc');
 
     if (_formkey.currentState!.validate()){
       _formkey.currentState!.save();
       UserModel user = UserModel(
+        user_id: DataGlobal.userID,
           user_name: uname,
           phone_number: uPhoneNumber,
           id_number: uIdNumber);
-      await DbHelper.updateUser(user);
+      await DbHelper.updateUser(user).then((value) => Navigator.of(context).pop());
+
     }
   }
 

@@ -37,14 +37,14 @@ class DbHelper {
 
   static Future<Database?> initDb() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, DB_Name);
+    String path= join(documentsDirectory.path, DB_Name);
     var db = await openDatabase(path, version: Version, onCreate: _onCreate);
     return db;
   }
 
   static Future<void> _onCreate(Database db, int intVersion) async {
     await db.execute("CREATE TABLE $Table_User ("
-        " $C_UserID INTEGER, "
+        " $C_UserID TEXT, "
         " $C_UserName TEXT, "
         " $C_IdNumber TEXT, "
         " $C_PhoneNumber TEXT,"
@@ -79,7 +79,7 @@ class DbHelper {
     print(user.user_id);
   }
 
-  Future<UserModel?> getUserById(int userId) async {
+  Future<UserModel?> getUserById(String userId) async {
     var dbClient = await db;
     var res = await dbClient?.rawQuery("SELECT * FROM $Table_User WHERE "
         "$C_UserID = '$userId'");

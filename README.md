@@ -80,3 +80,7 @@ link notion: https://www.notion.so/set-controller-text-in-textformfield-flutter-
 # 12/8/2023
 Thời gian làm (3 tiếng)
 chạy đuoợc nhưng cập nhật thông tin k được
+
+# 13/8/2023
+Thời gian làm (3 tiếng)
+Xong

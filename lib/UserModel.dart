@@ -1,5 +1,5 @@
 class UserModel {
-  int? user_id;
+  String? user_id;
   String? id_number;
   String? user_name;
   String? phone_number;
