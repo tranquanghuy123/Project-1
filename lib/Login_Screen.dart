@@ -10,7 +10,6 @@ import 'package:project1/DataGlobal.dart';
 import 'package:project1/Google_Sign_in.dart';
 import 'package:provider/provider.dart';
 
-var user = UserModel();
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -30,6 +29,8 @@ class _loginScreenState extends State<LoginScreen> {
   final _passwordController = TextEditingController();
 
   late DbHelper dbHelper;
+
+  var user = UserModel();
 
   @override
   void initState() {

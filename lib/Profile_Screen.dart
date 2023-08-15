@@ -105,14 +105,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 width: 30,
                               )),
                           GestureDetector(
-                              onTap: () {
-                                Navigator.push(
+                              onTap: () async {
+                                await Navigator.push<bool?>(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            EditProfileScreen()));
+                                            EditProfileScreen(name: (data){
+                                              setState(() {
+                                                name = data;
+                                              });
+                                            },)));
+                                // if(result != null)
+                                //   {
+                                //     print('Là giá tri của result = $result');
+                                //     print(name);
+                                //     print(user?.user_name);
+
+                                // setState(() {
+                                //   name = dbHelper.getUserByName(userName);
+                                // });
                               },
-                              child: Icon(
+                              // else{
+                              //   print('giá tri của result = null');
+                              //   // setState(() {
+                              //   //   name = user?.user_name ?? '';
+                              //   // });
+                              // }
+                              //},
+                              child: const Icon(
                                 Icons.edit,
                                 size: 30,
                                 color: Colors.white,
@@ -202,11 +222,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Navigator.pop(context);
                           },
                           dense: true,
-                          leading:
-                              Icon(Icons.input, color: Colors.black, size: 30),
-                          trailing: Icon(Icons.keyboard_arrow_right,
+                          leading: const Icon(Icons.input,
                               color: Colors.black, size: 30),
-                          title: Text("Đăng xuất",
+                          trailing: const Icon(Icons.keyboard_arrow_right,
+                              color: Colors.black, size: 30),
+                          title: const Text("Đăng xuất",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 17,

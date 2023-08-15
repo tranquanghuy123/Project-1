@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:project1/DataGlobal.dart';
@@ -7,9 +6,14 @@ import 'package:project1/Login_Screen.dart';
 import 'package:project1/Profile_Screen.dart';
 import 'UserModel.dart';
 import 'package:project1/DataGlobal.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
+typedef FunctionCallback = void Function(String name);
 
 class EditProfileScreen extends StatefulWidget {
-  EditProfileScreen({super.key});
+  EditProfileScreen({super.key,required this.name});
+
+  final FunctionCallback name;
 
   @override
   State<StatefulWidget> createState() {
@@ -100,11 +104,11 @@ class _editProfileScreenState extends State<EditProfileScreen> {
                     child: Row(
                       children: [
                         GestureDetector(
-                            onTap: () {
+                            onTap: () async {
                               Navigator.pop(
                                   context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ProfileScreen()));
+                              true,
+                              );
                             },
                             child: const Image(
                                 image: AssetImage('assets/icons/arrow.png'))),
@@ -264,10 +268,35 @@ class _editProfileScreenState extends State<EditProfileScreen> {
 
                         TextButton(
                             onPressed: () async {
-                              print('abc');
-                              if (_formkey.currentState!.validate()){
-                               _update();
+                              if (_formkey.currentState!.validate()) {
+                                _update();
+                                print('abc');
+                                Fluttertoast.showToast(
+                                    msg: "Cập nhật thành công",
+                                    toastLength: Toast.LENGTH_SHORT,
+                                    gravity: ToastGravity.TOP,
+                                    timeInSecForIosWeb: 1,
+                                    backgroundColor: Colors.green,
+                                    textColor: Colors.white,
+                                    fontSize: 16.0
+                                );
+                                // setState(() {
+                                //  _update();
+                                // });
                               }
+                              //}
+                              // else
+                              //   {
+                              //     Fluttertoast.showToast(
+                              //         msg: "Cập nhật không thành công",
+                              //         toastLength: Toast.LENGTH_SHORT,
+                              //         gravity: ToastGravity.TOP,
+                              //         timeInSecForIosWeb: 1,
+                              //         backgroundColor: Colors.red,
+                              //         textColor: Colors.white,
+                              //         fontSize: 16.0
+                              //     );
+                              //   }
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
@@ -301,20 +330,21 @@ class _editProfileScreenState extends State<EditProfileScreen> {
     String uIdNumber = _identitynumberController.text;
     String uid = DataGlobal.userID ?? '';
     print('abc');
+    print(uname);
+
 
     if (_formkey.currentState!.validate()){
       _formkey.currentState!.save();
-      UserModel user = UserModel(
+      UserModel user1 = UserModel(
         user_id: DataGlobal.userID,
           user_name: uname,
           phone_number: uPhoneNumber,
           id_number: uIdNumber);
-      await DbHelper.updateUser(user).then((value) => Navigator.of(context).pop());
+      //await DbHelper.updateUser(user).then((value) => Navigator.of(context).pop());
+      await DbHelper.updateUser(user1);
+      widget.name(uname);
+      print(user1.user_name);
 
     }
   }
-
-  // Method to change the value of the TextFormField
-
-
 }

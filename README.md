@@ -84,3 +84,7 @@ chạy đuoợc nhưng cập nhật thông tin k được
 # 13/8/2023
 Thời gian làm (3 tiếng)
 Xong
+
+# 13/8/2023
+Thời gian làm (3 tiếng)
+Xong: 1. Cập nhật giao diện khi thay đổi thông tin
