@@ -85,6 +85,14 @@ chạy đuoợc nhưng cập nhật thông tin k được
 Thời gian làm (3 tiếng)
 Xong
 
-# 13/8/2023
+# 14/8/2023
 Thời gian làm (3 tiếng)
 Xong: 1. Cập nhật giao diện khi thay đổi thông tin
+
+
+
+# 16/8/2023
+Thời gian làm (2 tiếng)
+notion (CallbackFuntion): https://www.notion.so/Update-UI-setState-and-Callback-Function-with-parameters-for-Passing-Data-Between-Classes-1546ae7a73c14a5cb0d4264a03c6c6c7?pvs=4
+
+Tim hieu routing, initialRoute
