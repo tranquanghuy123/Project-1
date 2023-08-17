@@ -96,3 +96,7 @@ Thời gian làm (2 tiếng)
 notion (CallbackFuntion): https://www.notion.so/Update-UI-setState-and-Callback-Function-with-parameters-for-Passing-Data-Between-Classes-1546ae7a73c14a5cb0d4264a03c6c6c7?pvs=4
 
 Tim hieu routing, initialRoute
+
+# 17/8/2023
+Thời gian làm (3 tiếng)
+Đang sửa lỗi hiển thị thông tin USer

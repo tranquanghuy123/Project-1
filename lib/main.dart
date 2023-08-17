@@ -7,6 +7,7 @@ import 'package:project1/Login_Screen.dart';
 import 'package:project1/Profile_Screen.dart';
 import 'package:project1/Register_Screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:project1/User_List_Screen.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: AuthPage(),
+        home: UserListScreen(),
       ),
     );
   }

@@ -91,6 +91,18 @@ class DbHelper {
     return null;
   }
 
+  Future<List<UserModel>> getAllUser() async {
+    var dbClient = await db;
+    var res = await dbClient?.rawQuery(Table_User);
+
+    List<UserModel> list =
+    res!.isNotEmpty ? res.map((c) => UserModel.fromMap(c)).toList() : [];
+    return list;
+    }
+
+  }
+
+
 
 // Future<int> deleteUser(String user_id) async {
 //   var dbClient = await db;
@@ -98,4 +110,3 @@ class DbHelper {
 //       .delete(Table_User, where: '$C_UserID = ?', whereArgs: [user_id]);
 //   return res;
 // }
-}
