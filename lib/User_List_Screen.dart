@@ -22,7 +22,6 @@ class _UserListScreenState extends State<UserListScreen> {
 
   void initData() async {
     users = await dbHelper?.getAllUser();
-    setState(() {});
   }
 
   @override
@@ -38,8 +37,23 @@ class _UserListScreenState extends State<UserListScreen> {
                 final user = users![index];
 
                 return ListTile(
-                  title: Text(user.user_name ?? ''),
-                  subtitle: Text(user.phone_number ?? ''),
+                  leading: const Icon(Icons.person),
+                  title: Text(user.user_id ?? '', style: const TextStyle(
+                    color: Colors.black, fontSize: 18, fontWeight: FontWeight.w700
+                  ),),
+                  //subtitle: Text(user.phone_number ?? ''),
+                  isThreeLine: true,
+                  subtitle: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(user.user_name ?? ''),
+                      Text(user.id_number ?? ''),
+                      Text(user.phone_number ?? ''),
+
+
+                    ],
+                  )
                 );
               },
             )

@@ -93,12 +93,21 @@ class DbHelper {
 
   Future<List<UserModel>> getAllUser() async {
     var dbClient = await db;
-    var res = await dbClient?.rawQuery(Table_User);
-
-    List<UserModel> list =
-    res!.isNotEmpty ? res.map((c) => UserModel.fromMap(c)).toList() : [];
-    return list;
+    final List<Map<String, dynamic>>? maps = await dbClient?.rawQuery('SELECT * FROM $Table_User ');
+    if (maps != null) {
+      return List.generate(maps.length, (i) {
+        return UserModel(
+          user_id: maps[i]['user_id'],
+          user_name: maps[i]['user_name'],
+          id_number: maps[i]['id_number'],
+          phone_number: maps[i]['phone_number'],
+          password: maps[i]['password'],
+        );
+      });
+    } else {
+      return []; // Return an empty list if maps is null
     }
+  }
 
   }
 

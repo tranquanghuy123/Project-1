@@ -100,3 +100,8 @@ Tim hieu routing, initialRoute
 # 17/8/2023
 Thời gian làm (3 tiếng)
 Đang sửa lỗi hiển thị thông tin USer
+
+# 17/8/2023
+Thời gian làm (3 tiếng)
+Hoàn thành hiển thị thông tin User
+Tìm hiểu share_refernce
