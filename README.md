@@ -89,7 +89,7 @@ Xong
 Thời gian làm (3 tiếng)
 Xong: 1. Cập nhật giao diện khi thay đổi thông tin
 
-
+# 15/8/2023 : Off
 
 # 16/8/2023
 Thời gian làm (2 tiếng)
@@ -101,7 +101,7 @@ Tim hieu routing, initialRoute
 Thời gian làm (3 tiếng)
 Đang sửa lỗi hiển thị thông tin USer
 
-# 17/8/2023
+# 18/8/2023
 Thời gian làm (3 tiếng)
 Hoàn thành hiển thị thông tin User
 Tìm hiểu share_refernce
