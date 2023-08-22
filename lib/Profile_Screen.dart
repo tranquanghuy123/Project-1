@@ -5,6 +5,7 @@ import 'package:project1/Google_Sign_in.dart';
 import 'package:project1/Home_Screen.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'DataGlobal.dart';
 import 'DatabaseHelper.dart';
 import 'EditProfile_Screen.dart';
@@ -219,6 +220,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 context,
                                 listen: false);
                             provider.logout();
+                            _handleLogout();
                             Navigator.pop(context);
                           },
                           dense: true,
@@ -238,5 +240,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     ));
+  }
+
+  Future<void> _handleLogout() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    Navigator.pushReplacementNamed(context, '/login');
   }
 }

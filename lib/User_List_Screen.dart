@@ -21,7 +21,7 @@ class _UserListScreenState extends State<UserListScreen> {
   }
 
   void initData() async {
-    users = await dbHelper?.getAllUser();
+    users = await dbHelper?.getUserAccountFromDatabase();
   }
 
   @override

@@ -4,6 +4,7 @@ import 'package:project1/Google_Sign_in.dart';
 import 'package:project1/Home_Screen.dart';
 import 'package:project1/Home_Screen.dart';
 import 'package:project1/Login_Screen.dart';
+import 'package:project1/Manage_Login_Status.dart';
 import 'package:project1/Profile_Screen.dart';
 import 'package:project1/Register_Screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -36,9 +37,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: UserListScreen(),
+        home: ManageLoginScreen(),
       ),
     );
   }
 }
-

@@ -8,7 +8,9 @@ import 'package:project1/UserModel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project1/DataGlobal.dart';
 import 'package:project1/Google_Sign_in.dart';
+import 'package:project1/User_Preferences.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class LoginScreen extends StatefulWidget {
@@ -21,6 +23,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _loginScreenState extends State<LoginScreen> {
+
   ///Global key
   final _formkey = GlobalKey<FormState>();
 
@@ -28,9 +31,12 @@ class _loginScreenState extends State<LoginScreen> {
   final _phonenumberController = TextEditingController();
   final _passwordController = TextEditingController();
 
+
+
   late DbHelper dbHelper;
 
   var user = UserModel();
+  
 
   @override
   void initState() {
@@ -38,6 +44,20 @@ class _loginScreenState extends State<LoginScreen> {
     super.initState();
     dbHelper = DbHelper();
   }
+
+  Future<void> _handleLogin() async {
+    String loginName = _phonenumberController.text;
+
+    // TODO: Thực hiện xác thực đăng nhập
+
+    // Lưu thông tin đăng nhập vào Shared Preferences
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('username', loginName);
+
+    // Chuyển đến màn hình trang chủ
+    Navigator.pushReplacementNamed(context, '/home');
+  }
+
 
   @override
   void dispose() {
@@ -172,6 +192,7 @@ class _loginScreenState extends State<LoginScreen> {
 
                                 });
                               }
+                              //await UserPreferences.setLoginName(loginName);
                             },
                             style: TextButton.styleFrom(
                                 backgroundColor: Colors.blue,
@@ -250,6 +271,7 @@ class _loginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
 
   // signInWithGoogle() async {
   //   GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();

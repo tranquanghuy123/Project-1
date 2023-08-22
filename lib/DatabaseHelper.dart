@@ -91,7 +91,7 @@ class DbHelper {
     return null;
   }
 
-  Future<List<UserModel>> getAllUser() async {
+  Future<List<UserModel>> getUserAccountFromDatabase() async {
     var dbClient = await db;
     final List<Map<String, dynamic>>? maps = await dbClient?.rawQuery('SELECT * FROM $Table_User ');
     if (maps != null) {
