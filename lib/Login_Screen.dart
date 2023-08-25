@@ -48,7 +48,6 @@ class _loginScreenState extends State<LoginScreen> {
   Future<void> _handleLogin() async {
     String loginName = _phonenumberController.text;
 
-    // TODO: Thực hiện xác thực đăng nhập
 
     // Lưu thông tin đăng nhập vào Shared Preferences
     SharedPreferences prefs = await SharedPreferences.getInstance();

@@ -9,6 +9,7 @@ import 'package:project1/Profile_Screen.dart';
 import 'package:project1/Register_Screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:project1/User_List_Screen.dart';
+import 'package:project1/User_Preferences.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
@@ -17,6 +18,8 @@ void main()  async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
+  await UserPreferences.init();
 
   runApp(const MyApp());
 }
