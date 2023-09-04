@@ -2,8 +2,9 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "dev.flutter.flutter-gradle-plugin"
-
     id("com.google.gms.google-services")
+
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 def localProperties = new Properties()
@@ -32,7 +33,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "com.example.project1"
-    compileSdkVersion flutter.compileSdkVersion
+    compileSdkVersion 34
     ndkVersion flutter.ndkVersion
 
     compileOptions {
@@ -53,7 +54,7 @@ android {
         applicationId "com.example.project1"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 21
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -89,9 +90,9 @@ flutter {
 dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
-    implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
+    implementation(platform('com.google.firebase:firebase-bom:32.2.3'))
 
-    implementation group: 'com.google.android.material', name: 'material', version: '1.1.0-alpha05'
+    implementation group: 'com.google.android.material', name: 'material', version: '1.11.0-alpha02'
 
 
 }

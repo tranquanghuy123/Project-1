@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project1/Google_Map.dart';
 import 'package:project1/Profile_Screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -48,7 +49,7 @@ class _HomeScreen1State extends State<HomeScreen1> {
                 Container(
                   height: 80,
                   width: widthScreen,
-                  //color: Colors.lightBlue,
+                  color: Colors.lightBlue,
                   padding: EdgeInsets.fromLTRB(6, 0, 0, 0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,14 +78,25 @@ class _HomeScreen1State extends State<HomeScreen1> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 100),
+                      SizedBox(width: 66.5),
                       Container(
-                        padding: const EdgeInsets.fromLTRB(0, 8, 0, 20),
+                        padding: EdgeInsets.fromLTRB(0, 8, 0, 20),
                         height: 100,
-                        width: 61,
+                        width: 98,
                         //color: Colors.orange,
                         child: Row(
                           children: [
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => GoogleMapSample()));
+                              },
+                              child: Icon(Icons.room, color: Colors.white,
+                                size: 26,)
+                            ),
+                            SizedBox(width: 11),
                             GestureDetector(
                               onTap: () {
                                 Navigator.push(

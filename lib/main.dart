@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project1/Auth_Page.dart';
 import 'package:project1/Google_Sign_in.dart';
 import 'package:project1/Home_Screen.dart';
 import 'package:project1/Home_Screen.dart';
+import 'package:project1/Home_Screen1.dart';
 import 'package:project1/Login_Screen.dart';
 import 'package:project1/Manage_Login_Status.dart';
 import 'package:project1/Profile_Screen.dart';
@@ -12,6 +14,7 @@ import 'package:project1/User_List_Screen.dart';
 import 'package:project1/User_Preferences.dart';
 import 'package:provider/provider.dart';
 import 'firebase_options.dart';
+import 'package:project1/Google_Map.dart';
 
 void main()  async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +43,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: ManageLoginScreen(),
+        home: HomeScreen1(),
       ),
     );
   }
